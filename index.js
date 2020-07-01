@@ -1,13 +1,12 @@
-/*  EXPRESS SETUP  */
-
 const express = require('express');
 const app = express();
+
 
 app.use(express.static(__dirname));
 
 const bodyParser = require('body-parser');
 const expressSession = require('express-session')({
-  secret: 'secret',
+  secret: 'furgot',
   resave: false,
   saveUninitialized: false
 });
@@ -20,7 +19,6 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => console.log('App listening on port ' + port));
 
 /*  PASSPORT SETUP  */
-
 const passport = require('passport');
 
 app.use(passport.initialize());
@@ -95,3 +93,10 @@ app.get('/user',
   connectEnsureLogin.ensureLoggedIn(),
   (req, res) => res.send({user: req.user})
 );
+
+
+/* REGISTER SOME USERS */
+
+// UserDetails.register({username:'paul', active: false}, 'paul');
+// UserDetails.register({username:'jay', active: false}, 'jay');
+// UserDetails.register({username:'roy', active: false}, 'roy');
